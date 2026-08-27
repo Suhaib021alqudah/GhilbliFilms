@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		EC4A32B23040824400203CC9 /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4A32B13040824400203CC9 /* Change.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		EC4A32773040180500203CC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -31,7 +27,6 @@
 		EC4A32693040180300203CC9 /* GhibliFilms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhibliFilms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4A32763040180500203CC9 /* GhibliFilmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GhibliFilmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4A32803040180500203CC9 /* GhibliFilmsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GhibliFilmsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC4A32B13040824400203CC9 /* Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Change.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -80,7 +75,6 @@
 		EC4A32603040180300203CC9 = {
 			isa = PBXGroup;
 			children = (
-				EC4A32B13040824400203CC9 /* Change.swift */,
 				EC4A326B3040180300203CC9 /* GhibliFilms */,
 				EC4A32793040180500203CC9 /* GhibliFilmsTests */,
 				EC4A32833040180500203CC9 /* GhibliFilmsUITests */,
@@ -242,7 +236,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC4A32B23040824400203CC9 /* Change.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
