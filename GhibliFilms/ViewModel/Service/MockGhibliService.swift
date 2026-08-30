@@ -16,14 +16,14 @@ struct MockGhibliService: GhibliService {
         let people: [Person]
     }
 
+    //MARK: - loadSampleData()
     private func loadSampleData() async throws -> SampleData {
         guard
             let url = Bundle.main.url(
                 forResource:
-
                     "SampleData",
                 withExtension: "json"
-            ) 
+            )
         else {
             throw APIError.invalidURL
         }
@@ -39,9 +39,20 @@ struct MockGhibliService: GhibliService {
 
     }
 
+    //MARK: - fetchFilms()
     func fetchFilms() async throws -> [Film] {
         let data = try await loadSampleData()
         return data.films
+    }
+    //MARK: - Preview/testing only()
+    func fetchFilm() async throws -> Film {
+        let data = try! await loadSampleData()
+        return data.films.first!
+    }
+    //MARK: - fetchPerson()
+    func fetchPerson(from URLString: String) async throws -> Person {
+        let data = try await loadSampleData()
+        return data.people.first!
     }
 
 }

@@ -43,5 +43,5 @@ struct FilmListView: View {
     @State @Previewable var viewModel = FilmsViewModel(
         service: MockGhibliService()
     )
-    FilmListView(filmsViewModel: FilmsViewModel(service: MockGhibliService()))
+    FilmListView(filmsViewModel: viewModel)
 }

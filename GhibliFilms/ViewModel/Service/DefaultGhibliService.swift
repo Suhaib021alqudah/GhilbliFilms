@@ -7,10 +7,25 @@
 
 import Foundation
 
+/*
+   The Services layers only holds pure functinos like fetchFilms() function
+   that dont hold any mutable state that can change during the run time
+   this help us to use different implementations
+
+   Sometimes we will facing situations where we need to have  a state
+   for example : A token refersh flow where we have to fetch the token
+   or access token.
+   In this case we would have a mutable state in these situation we will
+   do it in classes.
+*/
+
 struct DefaultGhibliService: GhibliService {
-    //MARK: - fetchFilms() Function
-    func fetchFilms() async throws -> [Film] {
-        guard let url = URL(string: "https://ghibliapi.vercel.app/films") else {
+
+    //MARK: - fetch() Function
+    func fetch<T: Decodable>(from URLString: String, type: T.Type) async throws
+        -> T
+    {
+        guard let url = URL(string: URLString) else {
             throw APIError.invalidURL
         }
         do {
@@ -20,7 +35,7 @@ struct DefaultGhibliService: GhibliService {
             else {
                 throw APIError.invalidResponse
             }
-            return try JSONDecoder().decode([Film].self, from: data)
+            return try JSONDecoder().decode(type.self, from: data)
 
         } catch let error as DecodingError {
             throw APIError.decoding(error)
@@ -28,6 +43,17 @@ struct DefaultGhibliService: GhibliService {
             throw APIError.networkError(error)
         }
 
+    }
+
+    //MARK: - fetchFilms() Function
+    func fetchFilms() async throws -> [Film] {
+        let url = "https://ghibliapi.vercel.app/films"
+        return try await fetch(from: url, type: [Film].self)
+    }
+
+    //MARK: - fetchPerson() Function
+    func fetchPerson(from URLString: String) async throws -> Person {
+        return try await fetch(from: URLString, type: Person.self)
     }
 
 }
