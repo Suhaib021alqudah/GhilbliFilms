@@ -32,7 +32,7 @@ enum APIError: LocalizedError {
         }
     }
 }
-
+ 
 @Observable
 class FilmsViewModel {
 
