@@ -9,11 +9,12 @@ import SwiftUI
 
 struct FilmListView: View {
 
-    @State private var filmsViewModel: FilmsViewModel = FilmsViewModel()
+    //MARK: - films : [Film]
+    // Pass it instead of initialized it (Dependecy Injection)
+    var filmsViewModel: FilmsViewModel = FilmsViewModel()
 
     var body: some View {
         NavigationStack {
-
             switch filmsViewModel.state
             {
             case .idle:
@@ -23,17 +24,15 @@ struct FilmListView: View {
                     Text("Loading")
                 }
             case .loaded(let films):
-
                 List(films) {
                     Text($0.title)
                 }
 
             case .error(let error):
-
                 Text(error).foregroundStyle(.red)
-
             }
-        }.task {
+        }
+        .task {
             await filmsViewModel.fetch()
 
         }
@@ -41,5 +40,8 @@ struct FilmListView: View {
     }
 }
 #Preview {
-    FilmListView()
+    @State @Previewable var viewModel = FilmsViewModel(
+        service: MockGhibliService()
+    )
+    FilmListView(filmsViewModel: FilmsViewModel(service: MockGhibliService()))
 }
