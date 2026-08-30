@@ -13,6 +13,7 @@ struct FilmListView: View {
 
     var body: some View {
         NavigationStack {
+
             switch filmsViewModel.state
             {
             case .idle:
