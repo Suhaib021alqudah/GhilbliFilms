@@ -17,7 +17,7 @@ struct MockGhibliService: GhibliService {
     }
 
     //MARK: - loadSampleData()
-    private func loadSampleData() async throws -> SampleData {
+    private func loadSampleData()  throws -> SampleData {
         guard
             let url = Bundle.main.url(
                 forResource:
@@ -45,8 +45,8 @@ struct MockGhibliService: GhibliService {
         return data.films
     }
     //MARK: - Preview/testing only()
-    func fetchFilm() async throws -> Film {
-        let data = try! await loadSampleData()
+    func fetchFilm()  throws -> Film {
+        let data = try!  loadSampleData()
         return data.films.first!
     }
     //MARK: - fetchPerson()

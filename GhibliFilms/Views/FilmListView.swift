@@ -9,8 +9,8 @@ import SwiftUI
 
 struct FilmListView: View {
 
-    //MARK: - films : [Film]
-    // Pass it instead of initialized it (Dependecy Injection)
+    //MARK: - films
+    
     var filmsViewModel: FilmsViewModel = FilmsViewModel()
 
     var body: some View {
@@ -24,8 +24,21 @@ struct FilmListView: View {
                     Text("Loading")
                 }
             case .loaded(let films):
-                List(films) {
-                    Text($0.title)
+                List(films) { film in
+                    NavigationLink(value: film) {
+                        HStack {
+                            FilmImageView(imageURL: film.image)
+                                .frame(width: 100, height: 150)
+
+                            Text(
+                                film.title
+                            ).padding(.horizontal)
+                        }
+                    }
+
+                }.navigationDestination(for: Film.self) {
+                    film in
+                    FilmDetailView(film: film)
                 }
 
             case .error(let error):
@@ -39,9 +52,10 @@ struct FilmListView: View {
 
     }
 }
+
 #Preview {
     @State @Previewable var viewModel = FilmsViewModel(
-        service: MockGhibliService()
+        service: DefaultGhibliService()
     )
     FilmListView(filmsViewModel: viewModel)
 }

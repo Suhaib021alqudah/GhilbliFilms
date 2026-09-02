@@ -53,7 +53,8 @@ struct DefaultGhibliService: GhibliService {
 
     //MARK: - fetchPerson() Function
     func fetchPerson(from URLString: String) async throws -> Person {
-        return try await fetch(from: URLString, type: Person.self)
+        let person = try await fetch(from: URLString, type: Person.self)
+        return person
     }
-
+ 
 }
