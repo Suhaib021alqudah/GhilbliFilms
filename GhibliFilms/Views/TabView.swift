@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct TabView: View {
+    @State private var filmsViewModel  = FilmsViewModel()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        SwiftUI.TabView {
+            Tab("Movies", systemImage: "movieclapper.fill") {
+                FilmsView(filmsViewModel: filmsViewModel)
+            }
+            Tab("Favorite", systemImage: "heart") {
+                FavoriteView()
+            }
+            Tab("Settings", systemImage: "gear") {
+                SettingsView()
+            }
+          
+            Tab(
+    
+                role: .search
+            ) {
+                SearchView()
+            }
+
+        }
     }
 }
 

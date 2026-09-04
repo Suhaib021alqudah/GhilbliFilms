@@ -14,7 +14,7 @@ struct FilmListView: View {
     var filmsViewModel: FilmsViewModel = FilmsViewModel()
 
     var body: some View {
-        NavigationStack {
+        
             switch filmsViewModel.state
             {
             case .idle:
@@ -44,18 +44,15 @@ struct FilmListView: View {
             case .error(let error):
                 Text(error).foregroundStyle(.red)
             }
-        }
-        .task {
-            await filmsViewModel.fetch()
-
-        }
+        
+        
 
     }
 }
 
 #Preview {
     @State @Previewable var viewModel = FilmsViewModel(
-        service: DefaultGhibliService()
+        service: MockGhibliService()
     )
     FilmListView(filmsViewModel: viewModel)
 }

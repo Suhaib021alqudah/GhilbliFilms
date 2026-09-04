@@ -7,13 +7,22 @@
 
 import SwiftUI
 
-let  filmsViewModel : FilmsViewModel
 struct FilmsView: View {
+    let filmsViewModel: FilmsViewModel
+
     var body: some View {
-        Text("Movies")
+        NavigationStack {
+            FilmListView(filmsViewModel: filmsViewModel)
+            
+                .navigationTitle("Ghibli Movies")
+        }.task {
+            await filmsViewModel.fetch()
+            
+        }
     }
 }
 
 #Preview {
-    FilmsView()
+
+    FilmsView(filmsViewModel: FilmsViewModel(service: MockGhibliService()))
 }
